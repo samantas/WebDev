@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Hair Color Randomizer</title>
+    <style type="text/css">
+    h1 {
+        font-family: "Helvetica", arial;
+        background-color: rgba(255, 204, 255, 0.4);
+        text-align: center;
+        line-height: 80px;
+    }
+    
+    h4 {
+        font-family: "Helvetica", arial;
+        color: #000;
+        font-weight: normal;
+        font-size: 15px;
+        text-align: center;
+        line-height: 20px;
+    }
+    
+    button {
+        width: 100px;
+        margin: auto;
+        padding: 10px;
+        border: 0px;
+        border-radius: 5px;
+        color: #000;
+        font-family: "Helvetica", arial;
+        font-weight: bold;
+        background-color: rgba(255, 204, 255, 0.4);
+        text-decoration: none;
+        text-align: center;
+        float: left;
+        transition: 0.5s;
+    }
+    
+    button:hover {
+        background-color: rgba(255, 204, 255, 0.2);
+    }
+    
+    p {
+        width: 300px;
+        position: absolute;
+        height: auto;
+        margin: auto;
+        margin-top: 40px;
+        padding: 5px;
+        font-family: "Helvetica", arial;
+        font-weight: bold;
+        color: #000;
+        opacity: 1;
+        transition: 0.5s;
+    }
+    
+    p:hover {
+        opacity: 0.5;
+    }
+    
+    #length {
+        height: 100px;
+        margin: 0;
+        margin-top: 65px;
+        padding: 5px;
+        position: absolute;
+        font-family: "Helvetica", arial;
+        font-style: italic;
+        font-size: 12px;
+    }
+    
+    fieldset {
+        clear: both;
+        width:210px;
+        margin: 5px;
+        margin-top: 150px;
+        font-family: "Helvetica", arial;
+        color: #000;
+        font-weight: bold;
+        font-size: 15px;
+        background-color: rgba(255, 204, 255, 0.2);
+
+    }
+    
+    label {
+        font-weight: normal;
+        font-size: 12px;
+        display: block;
+        margin-top:5px;
+    }
+
+    fieldset button{
+    	position:relative;
+   		width: 80px;
+        margin: auto;
+        padding-left:2px;
+        padding-right:2px;
+        padding-top:8px;
+        padding-bottom:8px;
+        border: 0px;
+        border-radius: 10px;
+        color: #000;
+        font-family: "Helvetica", arial;
+        font-weight: bold;
+        background-color: rgba(255, 204, 255, 0.4);
+        text-decoration: none;
+        text-align: center;
+        transition: 0.5s;
+
+    }
+
+    footer p{
+    	position:absolute;
+    	left:0;
+    	right:0;
+    	bottom:0;
+    	margin:0;
+    	font-weight: normal;
+    	font-size: 9px;
+    	z-index: -1;
+
+    }
+    </style>
+</head>
+<div id="wrapper">
+    <h1>Hair Color Randomizer</h1>
+
+    <body>
+        <h4>Click the button to pick a random hair color, or enter your customized options below. Click the hair color for a random time period.</h4>
+        <button onclick="ranCol();">
+            Pick haircolor!
+        </button>
+        <p id="result" onclick="howLong();" onmouseout="bye();"></p>
+        <div id="length"></div>
+        <fieldset>
+            <legend>
+                Customize the Randomizer!
+            </legend>
+            <label for="hairColor">Enter a haircolor</label>
+            <input type="text" name="hairColor1" id="hairColor1" />
+            
+            <label for="hairColor">Enter a second haircolor</label>
+            <input type="text" name="hairColor2" id="hairColor2" />
+            
+            <label for="hairColor">Enter a third haircolor</label>
+            <input type="text" name="hairColor3" id="hairColor3" />
+            <br>
+            <br>
+            <button onclick="randomizeCols();">Randomize!</button>
+        </fieldset>
+
+        <footer>
+        	<p>by Samanta Shi</p>
+
+        </footer>
+        <script type="text/javascript">
+        function ranCol() {
+            var myColors = {
+                colors: ["Dark Brown", "Light Brown", "Hazel Brown", "Platinum Blonde", "Natural Blonde", "Strawberry Blonde", "Jetblack", "Natural Black", "Green Black"]
+            }
+
+            for (i = 0; i < myColors.colors.length; i++) {
+                var randomNumber = Math.floor(Math.random() * myColors.colors.length);
+                document.getElementById('result').innerHTML = myColors.colors[randomNumber];
+                console.log(myColors.colors[randomNumber]);
+                return randomNumber;
+            }
+        }
+
+        function howLong() {
+            var myLengths = {
+                lengths: ["for 4 weeks", "for 2 months", "forever", "for 2 weeks", "for half a year"]
+            }
+
+            for (var i = 0; i < myLengths.lengths.length; i++) {
+                var randomLength = Math.floor(Math.random() * myLengths.lengths.length);
+                document.getElementById('length').innerHTML = myLengths.lengths[randomLength];
+                console.log(myLengths.lengths[randomLength]);
+                return randomLength;
+            }
+        }
+
+        function bye() {
+            document.getElementById('length').innerHTML = "";
+        }
+
+// customized randomizer
+        function randomizeCols() {
+            var customersColors = {
+            	cusColors: [document.getElementById('hairColor1').value, document.getElementById('hairColor2').value, document.getElementById('hairColor3').value]
+            }
+
+            for (var i = 0; i < customersColors.cusColors.length; i ++){
+            	var randomColor = Math.floor(Math.random() * customersColors.cusColors.length);
+            	document.getElementById('result').innerHTML = customersColors.cusColors[randomColor];
+            	return randomColor;
+            }
+
+        }
+        </script>
+    </body>
+</div>
+
+</html>
